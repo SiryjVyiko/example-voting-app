@@ -23,7 +23,6 @@ services:
          - hadoopnet
       volumes:
          - hadoop_namenode:/hadoop/dfs/name
-        #- hadoop_namenode:/hadoop/dfs/name
       environment:
          - CLUSTER_NAME=test
       env_file:
@@ -40,7 +39,6 @@ services:
          - namenode
       volumes:
          - hadoop_datanode:/hadoop/dfs/data
-        #- hadoop_datanode1:/hadoop/dfs/data
       environment:
          SERVICE_PRECONDITION: “namenode:9870"
       env_file:
@@ -58,8 +56,6 @@ services:
          - ./hadoop.env
       networks:
          - hadoopnet
-    #  ports:
-     #    -
     portainer:
       image: portainer/portainer
       command: -H unix:///var/run/docker.sock
@@ -72,10 +68,10 @@ services:
          - portainer_data:/data
       networks:
          - hadoopnet
-volumes:
-    hadoop_namenode:
-    hadoop_datanode:
-    hadoop_historyserver:
-    portainer_data:
-networks:
-    hadoopnet:
+    volumes:
+      hadoop_namenode:
+      hadoop_datanode:
+      hadoop_historyserver:
+      portainer_data:
+    networks:
+      hadoopnet:
