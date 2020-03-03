@@ -25,8 +25,8 @@ services:
          - hadoop_namenode:/hadoop/dfs/name
       environment:
          - CLUSTER_NAME=test
-      env_file:
-         - ./hadoop.env
+#      env_file:
+#         - ./hadoop.env
       restart: always
     datanode:
       image: bde2020/hadoop-datanode:1.1.0-hadoop2.7.1-java8
@@ -41,8 +41,8 @@ services:
          - hadoop_datanode:/hadoop/dfs/data
       environment:
          SERVICE_PRECONDITION: “namenode:9870"
-      env_file:
-         - ./hadoop.env
+ #     env_file:
+ #        - ./hadoop.env
       restart: always
     historyserver:
       image: bde2020/hadoop-historyserver:1.1.0-hadoop2.7.1-java8
@@ -52,8 +52,8 @@ services:
          SERVICE_PRECONDITION: “namenode:8020 namenode:9870 datanode:9864”
       volumes:
          - hadoop_historyserver:/hadoop/yarn/timeline
-      env_file:
-         - ./hadoop.env
+#      env_file:
+#         - ./hadoop.env
       networks:
          - hadoopnet
     portainer:
